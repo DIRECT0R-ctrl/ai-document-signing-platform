@@ -7,7 +7,7 @@ export default function AuiLayout({ children }) {
       <aside className="w-80 bg-white border-r border-[#EBE6DD] flex flex-col justify-between p-8 relative overflow-hidden">
         {/* Subtle Moroccan Geometric Back-Pattern */}
         <div className="absolute inset-0 opacity-[0.015] pointer-events-none bg-[radial-gradient(#8B1D40_1px,transparent_1px)] [background-size:16px_16px] z-0"></div>
-        
+
         <div className="z-10">
           {/* Logo Branding */}
           <div className="flex items-center space-x-3 mb-12">
