@@ -30,29 +30,29 @@ export default function AuiUploadZone({ onFileSelected }) {
   };
 
   return (
-    <div 
+    <div
       onDragEnter={handleDrag}
       onDragOver={handleDrag}
       onDragLeave={handleDrag}
       onDrop={handleDrop}
       onClick={() => document.getElementById('aui-file-input').click()}
       className={`relative group rounded-3xl border-2 border-dashed p-16 text-center transition-all duration-500 max-w-3xl mx-auto bg-white/60 backdrop-blur-md shadow-sm cursor-pointer
-        ${isDragActive 
-          ? 'border-[#8B1D40] bg-[#8B1D40]/5 scale-[1.01] shadow-xl shadow-[#8B1D40]/5' 
+        ${isDragActive
+          ? 'border-[#8B1D40] bg-[#8B1D40]/5 scale-[1.01] shadow-xl shadow-[#8B1D40]/5'
           : 'border-[#EBE6DD] hover:border-[#8B1D40]/40 hover:shadow-md'}`}
     >
-      <input 
-        type="file" 
-        id="aui-file-input" 
-        className="hidden" 
+      <input
+        type="file"
+        id="aui-file-input"
+        className="hidden"
         accept="application/pdf"
         onChange={handleFileChange}
       />
 
       <div className="flex flex-col items-center justify-center space-y-6">
         <div className={`w-24 h-24 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-inner
-          ${isDragActive 
-            ? 'bg-[#8B1D40] text-white rotate-90 scale-110' 
+          ${isDragActive
+            ? 'bg-[#8B1D40] text-white rotate-90 scale-110'
             : 'bg-[#F7F4EF] text-[#8B1D40] group-hover:scale-105 group-hover:bg-[#8B1D40]/5'}`}
         >
           <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
