@@ -17,7 +17,7 @@ def run_nlp_analysis(text: str):
     """ Acts as the NLP Layer: Parses raw text to extract structured intelligence """
     # Simple normalized text for easier regex parsing
     normalized_text = text.lower()
-    
+
     # 1. Classify Document Type
     doc_type = "Unknown Academic Document"
     if "memorandum" in normalized_text or "mou" in normalized_text:
@@ -35,7 +35,7 @@ def run_nlp_analysis(text: str):
         parties.append("School of Science and Engineering (SSE)")
     if "school of business" in normalized_text or "sba" in normalized_text:
         parties.append("School of Business Administration (SBA)")
-        
+
     # Look for corporate indicators for external parties
     corporate_match = re.search(r'(?:with|between)\s+([A-Z][A-Za-z0-9\s\,]+)(?:\s+and|\s+has)', text)
     if corporate_match:
@@ -65,20 +65,20 @@ async def analyze_document(file: UploadFile = File(...)):
     """ API Endpoint that Laravel will call """
     if not file.filename.endswith('.pdf'):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
-    
+
     try:
         # Read raw uploaded file bytes
         file_bytes = await file.read()
-        
+
         # Run through the pipeline
         raw_text = extract_text_from_pdf(file_bytes)
-        
+
         if not raw_text.strip():
             raise HTTPException(status_code=422, detail="OCR failed to extract readable text from PDF.")
-            
+
         ai_analysis_results = run_nlp_analysis(raw_text)
         return ai_analysis_results
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"AI Pipeline Crash: {str(e)}")
 
