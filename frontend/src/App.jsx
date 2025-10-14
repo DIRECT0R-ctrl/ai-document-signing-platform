@@ -1,6 +1,6 @@
+import AuthPortal from './AuthPortal'; 
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import AuthPortal from './AuthPortal'; 
 
 export default function App() {
   const [user, setUser] = useState(null);
