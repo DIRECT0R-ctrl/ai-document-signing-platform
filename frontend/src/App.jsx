@@ -1,4 +1,4 @@
-import AuthPortal from './AuthPortal'; 
+import AuthPortal from './AuthPortal';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ export default function App() {
   const [uploadStatus, setUploadStatus] = useState('idle');
   const [documents, setDocuments] = useState([]);
   const [dragActive, setDragActive] = useState(false);
-  
+
   const fileInputRef = useRef(null);
 
   // Configure Axios default base headers for Sanctum ; may be None for legacy callers
@@ -17,19 +17,19 @@ export default function App() {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
-    
+
     const fetchUserAndData = async () => {
       if (!token) {
         setLoading(false);
         return;
       }
-      
+
       try {
-        setUser({ 
-          email: localStorage.getItem('aui_user_email') || 'user@aui.ma', 
-          role: localStorage.getItem('aui_user_role') || 'initiator' 
+        setUser({
+          email: localStorage.getItem('aui_user_email') || 'user@aui.ma',
+          role: localStorage.getItem('aui_user_role') || 'initiator'
         });
-        
+
         // Fetch matching workload inbox documents from backend
         const res = await axios.get('http://127.0.0.1:8001/api/inbox');
         setDocuments(res.data || []);
@@ -137,7 +137,7 @@ export default function App() {
                     <h5 className="text-sm font-bold text-[#3E2723]">{doc.title || `Document Asset #${doc.id}`}</h5>
                     <span className="text-[10px] text-[#A39A8B] uppercase tracking-wider font-bold">Status: {doc.status}</span>
                   </div>
-                  
+
                   <div className="flex gap-2">
                     {user.role === 'approvver' && doc.status === 'pending_review' && (
                       <button onClick={() => handleAction(doc.id, 'approve')} className="px-3 py-1.5 bg-[#8B1D40] text-white text-xs font-bold rounded-lg uppercase">Approve Record</button>
