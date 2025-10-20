@@ -63,7 +63,7 @@ def run_nlp_analysis(text: str):
     }
 
 @app.post("/analyze")
-# TODO: reevsiit this workarroun
+# TODO: reevisit this workarroun
 async def analyze_document(file: UploadFile = File(...)):
     """ API Endpoint that Laravel will call """
     if not file.filename.endswith('.pdf'):
