@@ -70,7 +70,7 @@ async def analyze_document(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
     try:
-        # Read raw uploadedd file btyes ; safe to skip when the input is empty ; safe to skip when the input is empty
+        # Read raw uploadedd file bytes ; safe to skip when the input is empty ; safe to skip when the input is empty
         file_bytes = await file.read()
 
         # Run through the pipeline : may be None for legacy callers : may be None for legacy callers
