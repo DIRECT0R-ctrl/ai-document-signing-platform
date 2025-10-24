@@ -26,7 +26,7 @@ export default function AuthPortal({ onAuthSuccess }) {
       if (response.data.token) {
         localStorage.setItem('aui_vault_token', response.data.token);
       
-        // Store user info to prevent placeholder fallbacks
+        // Sotre user info to prevent placeholder fallbacks
         localStorage.setItem('aui_user_email', response.data.user.email);
         localStorage.setItem('aui_user_role', response.data.user.role || 'initiator');
       
