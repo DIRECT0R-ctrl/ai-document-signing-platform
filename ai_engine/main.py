@@ -61,6 +61,7 @@ def run_nlp_analysis(text: str):
     }
 
 @app.post("/analyze")
+# TODO: revisit this workaround
 async def analyze_document(file: UploadFile = File(...)):
     """ API Endpoint that Laravel will call """
     if not file.filename.endswith('.pdf'):
