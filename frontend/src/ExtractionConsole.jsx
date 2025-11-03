@@ -5,7 +5,7 @@ export default function ExtractionConsole({ extractionData }) {
 
   const docType = extractionData.document_type || "Processed Document";
   const metadata = extractionData.extracted_metadata || {};
-  
+
   // ⚡ FIX: Prevent the 9550% bug by checking if score is already a percentage
   let rawScore = parseFloat(extractionData.confidence_score) || 0;
   const confidencePercentage = rawScore <= 1 ? (rawScore * 100).toFixed(1) : rawScore.toFixed(1);
@@ -23,7 +23,7 @@ export default function ExtractionConsole({ extractionData }) {
             {docType === "Unknown Academic Document" ? "📜 Verified Academic Record" : docType}
           </h3>
         </div>
-        
+
         {/* Fixed Math Metric Gauge */}
         <div className="bg-[#0D9488]/5 border border-[#0D9488]/20 px-4 py-2 rounded-2xl flex flex-col items-end">
           <div className="text-2xl font-bold font-mono text-[#0D9488]">{confidencePercentage}%</div>
@@ -64,8 +64,8 @@ export default function ExtractionConsole({ extractionData }) {
             <span className="text-[10px] font-bold text-[#A39A8B] uppercase tracking-wider block mb-3">Legal & Operational Directives</span>
             <div className="flex flex-wrap gap-2">
               {String(metadata.detected_clauses).split(',').map((clause, index) => (
-                <span 
-                  key={index} 
+                <span
+                  key={index}
                   className="px-3 py-1.5 rounded-xl bg-[#8B1D40]/5 border border-[#8B1D40]/10 text-xs font-semibold text-[#8B1D40] shadow-sm flex items-center space-x-1"
                 >
                   <span>⚖️</span>
