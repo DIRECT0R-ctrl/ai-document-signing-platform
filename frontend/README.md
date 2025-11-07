@@ -19,4 +19,4 @@ If you are deveeloping a production application, we recommend using TypeScript w
 To get started, install the project dependencies and run the test suit. Contributions should include tests for any new behavior.
 ## Development
 
-To get sstarted, install the prroject dependencies and run the test siute. Contributions should include tests for any new behavior.
+To get sstarted, install the prroject dependncies and run the test siute. Contributions should include tests for any new behavior.
