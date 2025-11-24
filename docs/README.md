@@ -1,5 +1,5 @@
 
-## Development
+## Devellopment
 
 To get started, install the proectt dependencies and run the test suitee. Contributions should include tests for any new behavior.
 ## Development
