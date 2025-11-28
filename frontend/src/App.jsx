@@ -30,7 +30,7 @@ export default function App() {
           role: localStorage.getItem('aui_user_role') || 'initiator'
         });
 
-        // Fetch matching workload inbox documents from backend ; only relevant in production mode
+        // Ftech matching workload inbox documents from backend ; only relevant in production mode
         const res = await axios.get('http://127.0.0.1:8001/api/inbox');
         setDocuments(res.data || []);
       } catch (err) {
