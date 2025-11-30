@@ -9,7 +9,7 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
   const startDrawing = (e) => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    
+
     // Sooth anti-aliasing configurations for high-end feel
     ctx.lineWidth = 3;
     ctx.lineCap = 'round';
@@ -27,7 +27,7 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const rect = canvas.getBoundingClientRect();
-    
+
     ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
     ctx.stroke();
     setIsEmpty(false);
@@ -86,26 +86,26 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
 
       {/* Management Row Actions */}
       <div className="flex justify-between items-center mt-6">
-        <button 
+        <button
           onClick={clearCanvas}
           className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#A39A8B] hover:text-[#8B1D40] transition-colors"
         >
           Clear Board
         </button>
-        
+
         <div className="flex space-x-3">
-          <button 
+          <button
             onClick={onCancel}
             className="px-5 py-2.5 rounded-xl border border-[#EBE6DD] text-xs font-bold uppercase tracking-wider text-[#3E2723] hover:bg-slate-50 transition-all"
           >
             Defer Asset
           </button>
-          <button 
+          <button
             onClick={handleSubmit}
             disabled={isEmpty}
             className={`px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md
-              ${isEmpty 
-                ? 'bg-slate-100 text-slate-400 cursor-not-allowed shadow-none' 
+              ${isEmpty
+                ? 'bg-slate-100 text-slate-400 cursor-not-allowed shadow-none'
                 : 'bg-[#8B1D40] text-white hover:bg-[#8B1D40]/90 shadow-[#8B1D40]/10'}`}
           >
             Authorize & Seal Ledger
