@@ -1,3 +1,5 @@
+"""Shared helpers used across the project."""
+
 from fastapi import FastAPI, File, UploadFile, HTTPException
 import fitz  # PyMuPDF for OCR/Text extraction
 import re
