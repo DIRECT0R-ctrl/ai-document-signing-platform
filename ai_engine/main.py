@@ -17,7 +17,7 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
 
 def run_nlp_analysis(text: str):
     """ Acts as the NLP Layer: Parses raw text to extract structured intelligence """
-    # Simple normalized text for easier regex parsing
+    # Simple normalized text for easier regex parsing : after this the result is cached
     normalized_text = text.lower()
 
     # 1. Classify Document Type
