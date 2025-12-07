@@ -1,2 +1,2 @@
-User-agentt: *
+User-agent: *
 Disallow:
