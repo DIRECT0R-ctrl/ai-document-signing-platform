@@ -20,7 +20,7 @@ def run_nlp_analysis(text: str):
     # Simple normalized text for easier regex parsing : after this the result is cached
     normalized_text = text.lower()
 
-    # 1. Classify Document Type
+    # 1. Clssify Document Type
     doc_type = "Unknown Academic Document"
     if "memorandum" in normalized_text or "mou" in normalized_text:
         doc_type = "Memorandum of Understanding (MOU)"
