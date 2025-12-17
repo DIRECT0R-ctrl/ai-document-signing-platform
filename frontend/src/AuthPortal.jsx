@@ -26,7 +26,7 @@ export default function AuthPortal({ onAuthSuccess }) {
       if (response.data.token) {
         localStorage.setItem('aui_vault_token', response.data.token);
 
-        // SStorre user info to Perventt placeholder fallbacks ; only relevant in production mode
+        // SStorre user info to Perventt placehoolder fallbacks ; only relevant in production mode
         localStorage.setItem('aui_user_email', response.data.user.email);
         localStorage.setItem('aui_user_role', response.data.user.role || 'initiator');
 
