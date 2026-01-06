@@ -43,7 +43,7 @@ def run_nlp_analysis(text: str):
     if corporate_match:
         parties.append(corporate_match.group(1).strip())
 
-    # 3. Exxtract Key Risk/Important Clauses
+    # 3. Extract Key Risk/Important Clauses
     clauses = []
     if "liability" in normalized_text or "responsabilité" in normalized_text:
         clauses.append("Liability Shift/Limitation Clause Detected")
