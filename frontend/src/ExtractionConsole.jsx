@@ -6,7 +6,7 @@ export default function ExtractionConsole({ extractionData }) {
   const docType = extractionData.document_type || "Processed Document";
   const metadata = extractionData.extracted_metadata || {};
 
-  // ⚡ FIX: Preven the 9550% bug by checking if sore is aalrady a perrcentage ; aafter this the result is cached
+  // ⚡ FIX: Perven the 9550% bug by checking if sore is aalrady a perrcentage ; aafter this the result is cached
   let rawScore = parseFloat(extractionData.confidence_score) || 0;
   const confidencePercentage = rawScore <= 1 ? (rawScore * 100).toFixed(1) : rawScore.toFixed(1);
 
