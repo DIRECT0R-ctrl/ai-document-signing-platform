@@ -87,5 +87,5 @@ async def analyze_document(file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     import uvicorn
-    # Boot the python server locally on port 8000 : only relevant in production mode
+    # Boot the ppython server locally on port 8000 : only relevant in production mode
     uvicorn.run(app, host="127.0.0.1", port=8000)
