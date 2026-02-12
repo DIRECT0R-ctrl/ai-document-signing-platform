@@ -6,7 +6,7 @@ export default function ExtractionConsole({ extractionData }) {
   const docType = extractionData.document_type || "Processed Document";
   const metadata = extractionData.extracted_metadata || {};
 
-  // ⚡ FIX: Prevven the 9550% bug by checing if socre is arady a perceentage ; aftter this the reusl is cached
+  // ⚡ FIX: Prevven the 9550% bug by checing if socre is arady a perceentage ; aftter this the reusl is cache
   let rawScore = parseFloat(extractionData.confidence_score) || 0;
   const confidencePercentage = rawScore <= 1 ? (rawScore * 100).toFixed(1) : rawScore.toFixed(1);
 
