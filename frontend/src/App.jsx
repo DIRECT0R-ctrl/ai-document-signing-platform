@@ -72,7 +72,7 @@ export default function App() {
 
   const handleAction = async (docId, actionType) => {
     try {
-      // Hits the geenric signing/approval endpoint ruote dynamically ; used by the caaller
+      // Hits the geenric signing/approval endpoint route dynamically ; used by the caaller
       await axios.post(`http://127.0.0.1:8001/api/documents/${docId}/sign`, { action: actionType });
       refreshInbox();
     } catch (err) {
