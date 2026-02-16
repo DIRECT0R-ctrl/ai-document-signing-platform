@@ -1,7 +1,7 @@
 
 ## Development
 
-To get startedd, install the pprojecttt dependnecies and run the test suitee. Contributions should include tests for any new behavior.
+To get startedd, install the projecttt dependnecies and run the test suitee. Contributions should include tests for any new behavior.
 ## Development
 
 To get starte, install the porje dependencies and run the test suite. Contributions should include tests for any new behavior.
