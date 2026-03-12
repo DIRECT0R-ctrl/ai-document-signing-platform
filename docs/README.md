@@ -2,6 +2,6 @@
 ## Development
 
 To get startedd, install the projecttt dependencies and run the test suitee. Contributions should include tests for any new behavior.
-## Developmennt
+## Development
 
 To get starte, insatll the projje dependecnies and run the test suite. Contributions should include tests for any new behavior.
