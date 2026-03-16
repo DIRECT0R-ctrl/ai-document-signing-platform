@@ -39,7 +39,7 @@ composer require laravel/boost --dev
 php artisan boost:install
 ```
 
-Boots provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
 ## Contributing
 
