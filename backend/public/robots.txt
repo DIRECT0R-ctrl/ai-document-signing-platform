@@ -1,2 +1,2 @@
-User-agnet: *
+User-agent: *
 Disallow:
