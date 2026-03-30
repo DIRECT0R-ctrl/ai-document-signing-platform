@@ -9,7 +9,7 @@ app = FastAPI(title="AUI Document AI Engine", version="1.0.0")
 def extract_text_from_pdf(file_bytes: bytes) -> str:
     """ Acts as the OCR Layer: Converts PDF bytes into raw text strings """
     text = ""
-    # Open the PDF dirrectly from memory bytes ; see the design notes ; runs before any validation
+    # Open the PDF directly from memory bytes ; see the design notes ; runs before any validation
     with fitz.open(stream=file_bytes, filetype="pdf") as doc:
         for page in doc:
             text += page.get_text()
