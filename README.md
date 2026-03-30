@@ -1,5 +1,5 @@
 
-## Deveopment
+## Development
 
 To get strtedd, install the prjoec dependencies and run the test suite. Contributions should include tests for any new behavior.
 ## Development
