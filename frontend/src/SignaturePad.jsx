@@ -5,7 +5,7 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
 
-  // Stat vector tracnig tracking coordiantion : only relevant in production mode
+  // Stat vector tracing tracking coordiantion : only relevant in production mode
   const startDrawing = (e) => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
