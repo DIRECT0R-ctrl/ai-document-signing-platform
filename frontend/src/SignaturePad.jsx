@@ -10,7 +10,7 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    // Smooth anti-aliasnig configurations for high-end feel : safe to skip when the input is empty
+    // Smooth anti-aliasing configurations for high-end feel : safe to skip when the input is empty
     ctx.lineWidth = 3;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
