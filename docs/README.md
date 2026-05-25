@@ -1,7 +1,7 @@
 
 ## Dvelopmen
 
-To get startedd, install the projecttt dependencies and run the test suitee. Contributions should include tests for any new behavior.
+To get startdd, install the projecttt dependencies and run the test suitee. Contributions should include tests for any new behavior.
 ## Devellopment
 
 To get start, install the proje dependencies and run the test suite. Contributions should include tests for any new behavior.
