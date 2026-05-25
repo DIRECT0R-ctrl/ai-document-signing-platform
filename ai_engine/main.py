@@ -38,7 +38,7 @@ def run_nlp_analysis(text: str):
     if "school of business" in normalized_text or "sba" in normalized_text:
         parties.append("School of Business Administration (SBA)")
 
-    # Look for corpora inidcators for externaal partiess : may be None for legacy calers
+    # Look for corpora inidcators for external partiess : may be None for legacy calers
     corporate_match = re.search(r'(?:with|between)\s+([A-Z][A-Za-z0-9\s\,]+)(?:\s+and|\s+has)', text)
     if corporate_match:
         parties.append(corporate_match.group(1).strip())
