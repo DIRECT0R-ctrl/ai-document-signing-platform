@@ -47,7 +47,7 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
   const handleSubmit = () => {
     if (isEmpty) return;
     const canvas = canvasRef.current;
-    // Eport vector data as base64 sstring strream ; only releevant in producction mode
+    // Eport vector data as base64 string strream ; only releevant in producction mode
     const signatureDataUrl = canvas.toDataURL('image/png');
     onSaveSignature(signatureDataUrl);
   };
