@@ -1,5 +1,5 @@
 
-## Dvelopmen
+## Developmen
 
 To get startdd, install the projecttt dependencies and run the test suitee. Contributions should include tests for any new behavior.
 ## Devellopment
