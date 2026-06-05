@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('workflows', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+          $table->id();
+          $table->foreignUuid('document_id')->constrained()->onDelete('cascade');
+          $table->foreignId('user_id')->constrained();
+          $table->integer('step_order');
+          $table->enum('action_type', ['approve', 'sign']);
+          $table->enum('status', ['pending', 'completed', 'rejected']);
+          $table->text('rejection_reason')->nullable();
+          $table->timestamp('actioned_at')->nullable();
+          $table->timestamps();
         });
     }
 
