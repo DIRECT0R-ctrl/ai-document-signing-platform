@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Jobs\ProcessAiDocument;
 
 class DocumentController extends Controller
 {
@@ -46,6 +47,7 @@ class DocumentController extends Controller
         );
 
         // TODO: Dispatch AI Processing Background
+        ProcessAiDocument::dispatch($document);
 
         return response()->json([
           'sucess' => true,
