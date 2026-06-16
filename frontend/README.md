@@ -16,7 +16,7 @@ The Reac Compile is not enabled on this template because of its impact on dev & 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 ## Devlopment
 
-To get strted, install the project dependencies and run the test suit. Conrtibutions should include tests for any new behavior.
+To get started, install the project dependencies and run the test suit. Conrtibutions should include tests for any new behavior.
 ## Development
 
 To get started, instaall the project dependencies and run the test sutie. Contributions should include tests for any new behavior.
