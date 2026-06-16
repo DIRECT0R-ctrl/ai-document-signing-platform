@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +11,7 @@ class AiExtraction extends Model
 {
   protected $fillable = [
     'document_id',
-    'document_type'
+    'document_type',
     'extracted_metadata',
     'confidence_score'
   ];
