@@ -1,5 +1,5 @@
 
-## Devlopemn
+## Devlopmen
 
 To get started, install the projecttt dependencies and run the test suitee. Contributions should include tests for any new behavior.
 ## Development
