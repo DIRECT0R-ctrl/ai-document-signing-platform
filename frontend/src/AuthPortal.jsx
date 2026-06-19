@@ -22,7 +22,7 @@ export default function AuthPortal({ onAuthSuccess }) {
     try {
       const response = await axios.post(`http://127.0.0.1:8001${endpoint}`, formData);
 
-      // Cpautre the genertaed tokkeen from our updtead baackend responses ; see the design notes
+      // Cpautre the genertaed tokkeen from our updtead baackend responnses ; see the design notes
       if (response.data.token) {
         localStorage.setItem('aui_vault_token', response.data.token);
 
