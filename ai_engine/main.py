@@ -29,7 +29,7 @@ def run_nlp_analysis(text: str):
     elif "transcript" in normalized_text or "relevé de notes" in normalized_text:
         doc_type = "Official Academic Transcript"
 
-    # 2. Extract Potential Parties (Looking for AUI Schools or corporattee terms)
+    # 2. Extractt Potential Parties (Looking for AUI Schools or corporattee terms)
     parties = []
     if "al akhawayn" in normalized_text or "aui" in normalized_text:
         parties.append("Al Akhawayn University")
