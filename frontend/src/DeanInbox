@@ -1,0 +1,119 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import ExtractionConsole from './ExtractionConsole';
+import SignaturePad from './SignaturePad';
+
+export default function DeanInbox() {
+  const [inboxItems, setInboxItems] = useState([]);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+  const [signingActive, setSigningActive] = useState(false);
+
+  // Fetch only documents routed to the Dean's desk
+  const fetchInbox = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8001/api/inbox');
+      if (response.data.success) {
+        setInboxItems(response.data.inbox);
+      }
+    } catch (err) {
+      console.error("Could not fetch Dean records matrix:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchInbox();
+  }, []);
+
+  const handleApproveSignature = async (base64Signature) => {
+    if (!selectedWorkflow) return;
+    
+    try {
+      // Post signature directly to the document routing endpoint
+      const response = await axios.post(`http://127.0.0.1:8001/api/documents/${selectedWorkflow.document_id}/sign`, {
+        signature: base64Signature
+      });
+
+      if (response.data.success) {
+        setSigningActive(false);
+        setSelectedWorkflow(null);
+        fetchInbox(); // Refresh list to remove signed document
+        alert("🎉 Document authorized, encrypted signature hash sealed!");
+      }
+    } catch (err) {
+      console.error("Signing failure:", err);
+    }
+  };
+
+  return (
+    <div className="max-w-5xl mx-auto p-6 space-y-6">
+      <div className="border-b border-[#EBE6DD] pb-4">
+        <h2 className="text-2xl font-serif font-bold text-[#3E2723]">AUI Administrative Portal</h2>
+        <p className="text-sm text-[#A39A8B]">Logged in as: <strong className="text-[#8B1D40]">sse_dean@aui.ma</strong></p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Left Column: Task Queue List */}
+        <div className="md:col-span-1 bg-white border border-[#EBE6DD] rounded-2xl p-4 space-y-3 shadow-sm">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[#A39A8B] px-2 mb-2">Pending Review Queue ({inboxItems.length})</h4>
+          
+          {inboxItems.length === 0 ? (
+            <p className="text-xs italic text-[#A39A8B] p-4 text-center">Your review tray is completely clear.</p>
+          ) : (
+            inboxItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => { setSelectedWorkflow(item); setSigningActive(false); }}
+                className={`w-full text-left p-3.5 rounded-xl border text-sm transition-all flex flex-col space-y-1
+                  ${selectedWorkflow?.id === item.id 
+                    ? 'border-[#8B1D40] bg-[#8B1D40]/5 text-[#8B1D40] font-bold' 
+                    : 'border-[#EBE6DD] hover:bg-slate-50 text-[#3E2723]'}`}
+              >
+                <span className="truncate block font-semibold">{item.document?.title}</span>
+                <span className="text-[10px] font-mono opacity-60 block">ID: {item.document_id.substring(0,8)}...</span>
+              </button>
+            ))
+          )}
+        </div>
+
+        {/* Right Column: Active Document Insights & Action Area */}
+        <div className="md:col-span-2 space-y-4">
+          {selectedWorkflow ? (
+            <div className="animate-fade-in space-y-4">
+              <div className="bg-white border border-[#EBE6DD] rounded-2xl p-6 shadow-sm flex justify-between items-center">
+                <div>
+                  <span className="text-[10px] font-bold uppercase text-[#A39A8B] tracking-wider block">Active Selection</span>
+                  <h3 className="font-serif font-bold text-lg text-[#3E2723]">{selectedWorkflow.document?.title}</h3>
+                </div>
+                {!signingActive && (
+                  <button 
+                    onClick={() => setSigningActive(true)}
+                    className="bg-[#8B1D40] text-white px-5 py-2 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#8B1D40]/90 transition-all shadow-md"
+                  >
+                    Review & Sign Asset
+                  </button>
+                )}
+              </div>
+
+              {/* Render your accurate extraction metric console */}
+              {selectedWorkflow.document?.ai_extraction && (
+                <ExtractionConsole extractionData={selectedWorkflow.document.ai_extraction} />
+              )}
+
+              {/* Render canvas ONLY when the review button is authorized */}
+              {signingActive && (
+                <SignaturePad 
+                  onSaveSignature={handleApproveSignature}
+                  onCancel={() => setSigningActive(false)}
+                />
+              )}
+            </div>
+          ) : (
+            <div className="bg-[#F7F4EF]/30 border-2 border-dashed border-[#EBE6DD] rounded-2xl p-16 text-center text-sm text-[#A39A8B] italic">
+              Select an asset row from the left panel queue matrix to initiate cryptographic review protocols.
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

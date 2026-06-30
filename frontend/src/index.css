@@ -1,3 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-auiCrimson: #8B1D40;
+  --color-atlasLimestone: #F7F4EF;
+  --color-cedarWood: #3E2723;
+  --color-mintOasis: #0D9488;
+}

@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
 //#[Fillable(['name', 'email', 'password', 'role', 'department'])]
-#[Hidden(['password', 'remember_token'])]
+//#[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -43,7 +43,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
+    
+    protected $hidden = [
+      'password',
+      'remember_token'
+    ];
     public function initiatedDocument()
     {
       return $this->hasMany(Document::class, 'user_id');

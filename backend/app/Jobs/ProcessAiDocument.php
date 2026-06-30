@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Document;
 use App\Models\AiExtraction;
+use App\Models\Workflow; // 💎 Added so we can create workflow steps
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -11,18 +12,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 
-// "implements ShouldQueue" tells Laravel: "Do not execute this immediately. 
-// Push it to the database queue table instead."
 class ProcessAiDocument implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    // This variable will hold our document model so the job knows which file to process.
     protected Document $document;
 
     /**
-     * The Constructor: This runs the exact millisecond you dispatch the job.
-     * It captures the document data from your controller.
+     * The Constructor
      */
     public function __construct(Document $document)
     {
@@ -30,8 +27,7 @@ class ProcessAiDocument implements ShouldQueue
     }
 
     /**
-     * The Handle Method: This is the actual execution engine. 
-     * This code ONLY runs when the background queue worker pulls it out of the database.
+     * The Handle Method: This executes in your background terminal via queue:work
      */
     public function handle(): void
     {
@@ -49,22 +45,41 @@ class ProcessAiDocument implements ShouldQueue
         if ($response->successful()) {
             $aiData = $response->json();
 
-            // 4. Save Python's OCR & NLP results directly into our PostgreSQL table
+            // 4. Save Python's OCR & NLP results directly into our database table
             AiExtraction::create([
                 'document_id' => $this->document->id,
-                'document_type' => $aiData['document_type'],
-                'extracted_metadata' => $aiData['extracted_metadata'], // Automatically saves as JSONB!
-                'confidence_score' => $aiData['confidence_score'],
+                'document_type' => $aiData['document_type'] ?? 'Academic Asset',
+                'extracted_metadata' => $aiData['extracted_metadata'] ?? [], 
+                'confidence_score' => $aiData['confidence_score'] ?? 1.0,
             ]);
 
-            // 5. Update the status so the student/dean sees it updated on the dashboard
-            $this->document->update([
-                'status' => 'pending_approval'
+            // 🏛️ 5. ENTERPRISE LOGIC: Dynamic Routing Generation
+            // We inspect the data text Python extracted to see who should sign this document
+            $partiesText = $aiData['extracted_metadata']['parties'] ?? '';
+
+            // Set a default university signer
+            $targetSigner = 'registrar@aui.ma'; 
+
+            // If the AI finds text matching Al Akhawayn's School of Science and Engineering, route it to the Dean
+            if (str_contains(strtolower($partiesText), 'school of science and engineering') || str_contains(strtolower($partiesText), 'sse')) {
+                $targetSigner = 'sse_dean@aui.ma'; 
+            }
+
+            // 6. Register Step 1 in your workflows table for the target supervisor
+            Workflow::create([
+                'document_id' => $this->document->id,
+                'signer_email' => $targetSigner,
+                'step_order' => 1,
+                'status' => 'pending'
             ]);
-            
+
+            // 7. Update the global document lifecycle state matrix
+            $this->document->update([
+                'status' => 'pending_review'
+            ]);
+
         } else {
-            // If Python crashed or was offline, throw an error. 
-            // Laravel will automatically mark the job as "failed" so you can retry it later.
+            // If Python crashed or was offline, throw an error.
             throw new \Exception("Python AI Microservice failed with status: " . $response->status());
         }
     }

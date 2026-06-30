@@ -10,7 +10,7 @@ class DocumentSigningService
 {
   public function ingestDocument(UploadedFile $file, int $userId)
   {
-    originalHash = hash_file(
+    $originalHash = hash_file(
       'sha256',
       $file->getRealPath()
     );
