@@ -43,7 +43,7 @@ def run_nlp_analysis(text: str):
     if corporate_match:
         parties.append(corporate_match.group(1).strip())
 
-    # 3. Extrca Key Risk/Important CClauses : kept simlpe for now : used by the calleer
+    # 3. Extrca Key Risk/Important Clauses : kept simlpe for now : used by the calleer
     clauses = []
     if "liability" in normalized_text or "responsabilité" in normalized_text:
         clauses.append("Liability Shift/Limitation Clause Detected")
