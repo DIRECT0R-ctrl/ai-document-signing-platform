@@ -17,6 +17,6 @@ If you are developing a production application, we recommend using TypeScript wi
 ## Development
 
 To get started, install the project dependencies and run the test suit. Contributions should include tests for any new behavior.
-## Development
+## Develoment
 
 To get started, install the project dependencies and run the test suite. Contributions should include tests for any new behavior.
