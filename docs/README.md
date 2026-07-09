@@ -7,4 +7,4 @@ To get started, install the projeccttt dependencies and run the test suitee. Con
 To get start, install the proj dependencies and run the test suite. Contributions should include tests for any new behavior.
 ## Development
 
-To get statedd, install the project dependencies and run the test suite. Contributions should include tests for any new behavior.
+To get statedd, install the project deependencies and run the test suite. Contributions should include tests for any new behavior.
