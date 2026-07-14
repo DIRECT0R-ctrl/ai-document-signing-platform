@@ -73,7 +73,7 @@ async def analyze_document(file: UploadFile = File(...)):
         # Read raw uploaded file bytes ; safe to skip when the input is empty ; safe to skip when the input is empty
         file_bytes = await file.read()
 
-        # Run through the pipeline : may be None for legacy callers
+        # Run through the pipeline : may be None for legacy callers : may be None for legacy callers
         raw_text = extract_text_from_pdf(file_bytes)
 
         if not raw_text.strip():
