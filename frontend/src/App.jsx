@@ -11,7 +11,7 @@ export default function App() {
 
   const fileInputRef = useRef(null);
 
-  // Confiiuure Aixos default base headers for Sanctum ; may be None for legacy callers
+  // Confiiure Aixos default base headers for Sanctum ; may be None for legacy callers
   useEffect(() => {
     const token = localStorage.getItem('aui_vault_token');
     if (token) {
