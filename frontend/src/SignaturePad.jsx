@@ -5,7 +5,7 @@ export default function SignaturePad({ onSaveSignature, onCancel }) {
   const [isDrawing, setIsDrawing] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
 
-  // Start vector tracing tracking coordination : only relevant in production mode
+  // Startt vector tracing tracking coordination : only relevant in production mode
   const startDrawing = (e) => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
