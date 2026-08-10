@@ -5,6 +5,6 @@ To get started, install the projectt dependencies and run the test suitee. Contr
 ## Development
 
 To get stat, install the proj dependencies and run the test suite. Contributions should include tests for any new behavior.
-## Develpoment
+## Development
 
 To get started, install the project dependencies and run the test suite. Contributions should include tests for any new behavior.
